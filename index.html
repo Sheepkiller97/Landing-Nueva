@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="es" class="dark scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>El Método Día Uno | Dejá de Postergar y Recuperá el Control</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        darkBg: '#09090b',
+                        darkSection: '#121215',
+                        darkCard: '#18181c',
+                        darkBorder: '#27272a',
+                        goldPrimary: '#D4AF37',
+                        goldBright: '#F5D061',
+                        goldDark: '#997A2A'
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            overflow-x: hidden;
+            background-color: #09090b;
+        }
+
+        /* Fondos limpios intercalados: negro carbón y gris grafito suave (sin tintes marrones) */
+        .section-black {
+            background-color: #09090b;
+        }
+
+        .section-charcoal {
+            background-color: #121216;
+        }
+
+        .gold-gradient-text {
+            background: linear-gradient(135deg, #FCE38A 0%, #E5B942 50%, #C49327 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .section-divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.08) 50%, transparent 100%);
+        }
+
+        .premium-card {
+            background: linear-gradient(160deg, #1b1b20 0%, #131317 100%);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+            transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+        }
+        .premium-card:hover {
+            border-color: rgba(212, 175, 55, 0.45);
+            box-shadow: 0 16px 38px rgba(0, 0, 0, 0.6), 0 0 22px rgba(212, 175, 55, 0.10);
+        }
+
+        .card-accent-left {
+            border-left: 3px solid #D4AF37;
+        }
+
+        .gold-border-subtle {
+            border: 1px solid rgba(212, 175, 55, 0.32);
+        }
+
+        .gold-glow {
+            box-shadow: 0 18px 48px rgba(0, 0, 0, 0.65), 0 0 32px rgba(212, 175, 55, 0.12);
+        }
+
+        .btn-gold {
+            background: linear-gradient(135deg, #F5D061 0%, #D4AF37 55%, #B88E26 100%);
+            color: #09090b;
+            border: 1px solid rgba(255, 248, 220, 0.45);
+            box-shadow: 0 8px 24px rgba(212, 175, 55, 0.22);
+            transition: all 0.25s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+        .btn-gold:hover {
+            background: linear-gradient(135deg, #FFE07D 0%, #DFBA44 100%);
+            box-shadow: 0 12px 30px rgba(245, 208, 97, 0.35);
+            transform: translateY(-2px);
+        }
+
+        /* Animaciones suaves de aparición */
+        .reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.7s cubic-bezier(0.25, 1, 0.5, 1), transform 0.7s cubic-bezier(0.25, 1, 0.5, 1);
+            will-change: opacity, transform;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .delay-100 { transition-delay: 100ms; }
+        .delay-200 { transition-delay: 200ms; }
+        .delay-300 { transition-delay: 300ms; }
+
+        /* Botón flotante discreto */
+        .floating-cta {
+            position: fixed;
+            bottom: 14px;
+            right: 14px;
+            z-index: 90;
+            display: none;
+            box-shadow: 0 8px 22px rgba(0, 0, 0, 0.78), 0 0 16px rgba(212, 175, 55, 0.22);
+        }
+        @media (max-width: 639px) {
+            .floating-cta {
+                bottom: 12px;
+                right: 12px;
+                padding: 9px 14px;
+                font-size: 11px;
+                border-radius: 9999px;
+            }
+        }
+    </style>
+</head>
+<body class="bg-darkBg text-gray-100 antialiased selection:bg-goldPrimary selection:text-darkBg">
+
+    <!-- Barra Superior Informativa (Gris carbón limpio con texto dorado puntual) -->
+    <div class="bg-[#141418] border-b border-white/10 py-2 px-3 text-center text-xs sm:text-sm font-medium text-gray-200 tracking-wide">
+        Acceso digital inmediato · <span class="text-goldBright font-semibold">Ebook + 3 Bonos de Ejecución incluidos</span>
+    </div>
+
+    <!-- Encabezado Fijo Responsive -->
+    <header class="sticky top-0 z-50 bg-[#09090b]/92 backdrop-blur-md border-b border-white/10">
+        <div class="max-w-6xl mx-auto px-3 sm:px-6 lg:px-8 h-16 sm:h-20 flex items-center justify-between gap-2">
+            <!-- Izquierda: Etiqueta Oficial alineada + Marca -->
+            <div class="flex items-center gap-2 sm:gap-3 min-w-0">
+                <span class="inline-flex items-center justify-center text-center leading-none text-[10px] sm:text-xs uppercase tracking-wider px-2.5 py-1.5 rounded-md bg-white/[0.06] text-goldBright font-bold border border-goldPrimary/35 whitespace-nowrap shrink-0">
+                    Método oficial
+                </span>
+                <span class="font-extrabold text-sm sm:text-xl tracking-tight text-white whitespace-nowrap truncate">
+                    DÍA <span class="gold-gradient-text">UNO</span>
+                </span>
+            </div>
+
+            <!-- Derecha: Botón sin recortes en pantallas de 320px+ -->
+            <div class="shrink-0">
+                <a href="https://whop.com/checkout/plan_1ZilJ62oSYEes" class="btn-gold inline-flex items-center justify-center text-center leading-none text-[11px] sm:text-sm font-extrabold uppercase tracking-normal sm:tracking-wider px-3 py-2.5 sm:px-5 sm:py-3 rounded-lg whitespace-nowrap">
+                    Acceder al método
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Sección 1: HERO (Negro Carbón Puro y Limpio) -->
+    <section class="section-black relative pt-10 pb-16 sm:pt-16 sm:pb-24 lg:pt-20 lg:pb-28 overflow-hidden">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center max-w-4xl mx-auto reveal">
+                <div class="inline-flex items-center justify-center gap-2 px-3.5 py-1.5 rounded-full bg-[#16161a] border border-white/15 mb-5">
+                    <span class="w-2 h-2 rounded-full bg-goldBright shrink-0"></span>
+                    <span class="text-[11px] sm:text-xs text-gray-200 font-bold tracking-wider uppercase leading-none">
+                        Sistema práctico contra la procrastinación
+                    </span>
+                </div>
+                
+                <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-[1.12] mb-5">
+                    Sabés exactamente lo que tenés que hacer. <br class="hidden sm:inline"/>
+                    <span class="gold-gradient-text">Y aun así lo seguís postergando.</span>
+                </h1>
+                
+                <p class="text-base sm:text-xl text-gray-300 mb-8 leading-relaxed max-w-2xl mx-auto font-normal">
+                    Dejá de esperar a tener ganas para empezar. Aprendé un sistema claro para vencer la resistencia mental de los primeros minutos y pasar a la acción hoy mismo.
+                </p>
+
+                <!-- Llamado a la acción principal -->
+                <div class="flex flex-col items-center justify-center gap-3 mb-7">
+                    <a href="https://whop.com/checkout/plan_1ZilJ62oSYEes" class="w-full sm:w-auto btn-gold inline-flex items-center justify-center text-sm sm:text-base font-extrabold uppercase tracking-wider px-6 sm:px-9 py-4 rounded-xl text-center min-h-[52px]">
+                        Empezar mi Día Uno
+                    </a>
+                </div>
+
+                <!-- Puntos clave de entrega -->
+                <div class="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-xs sm:text-sm text-gray-400">
+                    <span class="inline-flex items-center"><span class="text-goldBright mr-1.5 font-bold">✓</span> Descarga digital inmediata</span>
+                    <span class="inline-flex items-center"><span class="text-goldBright mr-1.5 font-bold">✓</span> Pago único sin suscripciones</span>
+                    <span class="inline-flex items-center"><span class="text-goldBright mr-1.5 font-bold">✓</span> Garantía de 7 días</span>
+                </div>
+            </div>
+
+            <!-- Presentación Visual Cuadrada (1:1) Generosa en Móvil -->
+            <div class="mt-10 sm:mt-14 max-w-md sm:max-w-lg mx-auto reveal delay-200">
+                <div class="rounded-2xl p-2.5 sm:p-4 premium-card gold-border-subtle gold-glow">
+                    <div class="rounded-xl overflow-hidden bg-[#09090b] aspect-square flex items-center justify-center relative border border-white/10">
+                        <img src="https://cdn.shopify.com/s/files/1/0813/3820/4408/files/ChatGPT_Image_15_jun_2026_01_27_33.png?v=1781497686" alt="El Método Día Uno - Ebook y herramientas digitales" class="w-full h-full object-contain">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- Sección 2: EL PROBLEMA / CICLO (Gris Grafito Suave) -->
+    <section class="section-charcoal py-16 sm:py-24">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-12 sm:mb-16 reveal">
+                <span class="text-xs uppercase tracking-widest text-goldBright font-bold block mb-2">El verdadero freno</span>
+                <h2 class="text-2xl sm:text-4xl font-extrabold text-white mb-4">¿Te sentís atrapado en este ciclo?</h2>
+                <p class="text-gray-300 text-sm sm:text-base">Postergar no siempre es falta de tiempo o de capacidad. Muchas veces es una reacción automática para evitar la incomodidad de empezar.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+                <div class="premium-card card-accent-left p-6 sm:p-8 rounded-2xl reveal delay-100">
+                    <div class="w-11 h-11 rounded-xl bg-white/[0.05] border border-white/15 flex items-center justify-center text-xl mb-5">🧭</div>
+                    <h3 class="text-lg sm:text-xl font-bold text-white mb-3">La intención frenada</h3>
+                    <p class="text-gray-300 text-sm leading-relaxed">Tenés la lista de tareas armada y sabés por dónde arrancar, pero terminás distraído con el celular mientras el día se te escapa.</p>
+                </div>
+                <div class="premium-card card-accent-left p-6 sm:p-8 rounded-2xl reveal delay-200">
+                    <div class="w-11 h-11 rounded-xl bg-white/[0.05] border border-white/15 flex items-center justify-center text-xl mb-5">⏳</div>
+                    <h3 class="text-lg sm:text-xl font-bold text-white mb-3">El peso de lo pendiente</h3>
+                    <p class="text-gray-300 text-sm leading-relaxed">Llega la noche con la sensación de haber estado ocupado sin avanzar en lo que realmente importa. Te prometés empezar mañana, pero todo se repite.</p>
+                </div>
+                <div class="premium-card card-accent-left p-6 sm:p-8 rounded-2xl reveal delay-300">
+                    <div class="w-11 h-11 rounded-xl bg-white/[0.05] border border-white/15 flex items-center justify-center text-xl mb-5">🔄</div>
+                    <h3 class="text-lg sm:text-xl font-bold text-white mb-3">Proyectos estancados</h3>
+                    <p class="text-gray-300 text-sm leading-relaxed">Ideas, estudios o metas personales quedan en pausa semana tras semana porque el primer paso parece demasiado pesado.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- Sección 3: LA SOLUCIÓN / 4 PILARES (Negro Carbón) -->
+    <section class="section-black py-16 sm:py-24">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-12 sm:mb-16 reveal">
+                <span class="text-xs uppercase tracking-widest text-goldBright font-bold block mb-2">Cómo funciona el método</span>
+                <h2 class="text-2xl sm:text-4xl font-extrabold text-white mb-4">No necesitás más fuerza de voluntad. Necesitás un sistema.</h2>
+                <p class="text-gray-300 text-sm sm:text-base">El Método Día Uno ataca de frente las cuatro barreras que te impiden arrancar:</p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6">
+                <div class="premium-card p-6 rounded-2xl reveal delay-100">
+                    <span class="inline-block text-goldBright font-extrabold text-sm px-3 py-1 rounded-md bg-white/[0.06] border border-goldPrimary/35 mb-4">01</span>
+                    <h3 class="text-lg font-bold text-white mb-2">Vencer la inercia</h3>
+                    <p class="text-gray-300 text-sm leading-relaxed">Rompé el bloqueo inicial con acciones breves de arranque que reducen la fricción mental en los primeros minutos.</p>
+                </div>
+                <div class="premium-card p-6 rounded-2xl reveal delay-200">
+                    <span class="inline-block text-goldBright font-extrabold text-sm px-3 py-1 rounded-md bg-white/[0.06] border border-goldPrimary/35 mb-4">02</span>
+                    <h3 class="text-lg font-bold text-white mb-2">Ordenar la sobrecarga</h3>
+                    <p class="text-gray-300 text-sm leading-relaxed">Dividí tareas abrumadoras en pasos concretos y manejables para evitar la parálisis por exceso de opciones.</p>
+                </div>
+                <div class="premium-card p-6 rounded-2xl reveal delay-300">
+                    <span class="inline-block text-goldBright font-extrabold text-sm px-3 py-1 rounded-md bg-white/[0.06] border border-goldPrimary/35 mb-4">03</span>
+                    <h3 class="text-lg font-bold text-white mb-2">Soltar el perfeccionismo</h3>
+                    <p class="text-gray-300 text-sm leading-relaxed">Desactivá el miedo a equivocarte o a no hacerlo perfecto, priorizando el avance real sobre la espera interminable.</p>
+                </div>
+                <div class="premium-card p-6 rounded-2xl reveal delay-100">
+                    <span class="inline-block text-goldBright font-extrabold text-sm px-3 py-1 rounded-md bg-white/[0.06] border border-goldPrimary/35 mb-4">04</span>
+                    <h3 class="text-lg font-bold text-white mb-2">Volver al presente</h3>
+                    <p class="text-gray-300 text-sm leading-relaxed">Dejá atrás el peso de lo que no hiciste antes y enfocá tu atención únicamente en la acción de hoy.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- Sección 4: EBOOK + 3 BONOS (Gris Grafito Suave) -->
+    <section class="section-charcoal py-16 sm:py-24">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-12 sm:mb-16 reveal">
+                <span class="text-xs uppercase tracking-widest text-goldBright font-bold block mb-2">Contenido incluido</span>
+                <h2 class="text-2xl sm:text-4xl font-extrabold text-white mb-4">Todo lo que recibís al acceder hoy</h2>
+                <p class="text-gray-300 text-sm sm:text-base">Un sistema completo en formato digital para leer, completar y aplicar desde el primer día.</p>
+            </div>
+
+            <!-- Producto Principal Destacado -->
+            <div class="premium-card gold-border-subtle rounded-3xl p-6 sm:p-10 mb-8 gold-glow reveal">
+                <div class="grid grid-cols-1 md:grid-cols-12 gap-6 sm:gap-8 items-center">
+                    <div class="md:col-span-5">
+                        <div class="aspect-square rounded-2xl overflow-hidden bg-[#09090b] border border-white/10">
+                            <img src="https://cdn.shopify.com/s/files/1/0813/3820/4408/files/ChatGPT_Image_15_jun_2026_01_27_33.png?v=1781497686" alt="Ebook El Método Día Uno" class="w-full h-full object-contain">
+                        </div>
+                    </div>
+                    <div class="md:col-span-7">
+                        <span class="inline-block text-xs uppercase tracking-wider font-bold text-goldBright bg-white/[0.06] border border-goldPrimary/40 px-3 py-1 rounded-full mb-3">
+                            Guía Principal · Formato PDF
+                        </span>
+                        <h3 class="text-2xl sm:text-3xl font-extrabold text-white mb-3">Ebook: El Método Día Uno</h3>
+                        <p class="text-gray-300 text-sm sm:text-base leading-relaxed mb-5">
+                            El manual central donde vas a identificar qué raíz frena tu acción y cómo aplicar pasos concretos para empezar tareas difíciles sin depender de la motivación.
+                        </p>
+                        <ul class="space-y-2.5 text-sm text-gray-200">
+                            <li class="flex items-start gap-2.5"><span class="text-goldBright font-bold">✓</span><span>Autodiagnóstico práctico de tus bloqueos al iniciar.</span></li>
+                            <li class="flex items-start gap-2.5"><span class="text-goldBright font-bold">✓</span><span>Ejercicios breves de aplicación inmediata en 5 minutos.</span></li>
+                            <li class="flex items-start gap-2.5"><span class="text-goldBright font-bold">✓</span><span>Contrato de compromiso personal para sostener el ritmo.</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Los 3 Bonos Incluidos -->
+            <div class="space-y-4 sm:space-y-5">
+                <!-- Bono 1 -->
+                <div class="premium-card rounded-2xl p-6 sm:p-7 flex flex-col sm:flex-row sm:items-center justify-between gap-4 reveal delay-100">
+                    <div class="flex items-start gap-4">
+                        <div class="w-12 h-12 rounded-xl bg-white/[0.06] border border-goldPrimary/40 flex items-center justify-center text-goldBright font-extrabold text-base shrink-0">
+                            #1
+                        </div>
+                        <div>
+                            <div class="flex flex-wrap items-center gap-2 mb-1">
+                                <span class="text-xs font-bold uppercase tracking-wider text-goldBright">Bono incluido</span>
+                                <span class="text-xs text-gray-400">· Hoja de ruta</span>
+                            </div>
+                            <h4 class="text-lg sm:text-xl font-bold text-white mb-1.5">Checklist: 21 Días de Ruta</h4>
+                            <p class="text-gray-300 text-sm leading-relaxed">Un plan diario organizado en 3 semanas para sostener la constancia, superar tropiezos y consolidar el hábito de actuar.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bono 2 -->
+                <div class="premium-card rounded-2xl p-6 sm:p-7 flex flex-col sm:flex-row sm:items-center justify-between gap-4 reveal delay-200">
+                    <div class="flex items-start gap-4">
+                        <div class="w-12 h-12 rounded-xl bg-white/[0.06] border border-goldPrimary/40 flex items-center justify-center text-goldBright font-extrabold text-base shrink-0">
+                            #2
+                        </div>
+                        <div>
+                            <div class="flex flex-wrap items-center gap-2 mb-1">
+                                <span class="text-xs font-bold uppercase tracking-wider text-goldBright">Bono incluido</span>
+                                <span class="text-xs text-gray-400">· Herramientas tácticas</span>
+                            </div>
+                            <h4 class="text-lg sm:text-xl font-bold text-white mb-1.5">5 Técnicas Antiprocrastinación</h4>
+                            <p class="text-gray-300 text-sm leading-relaxed">Guía rápida con 5 herramientas prácticas: Regla de los 5 segundos, Técnica Pomodoro, Comer el Sapo, Intenciones de Implementación y Método de 2 Minutos.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bono 3 -->
+                <div class="premium-card rounded-2xl p-6 sm:p-7 flex flex-col sm:flex-row sm:items-center justify-between gap-4 reveal delay-300">
+                    <div class="flex items-start gap-4">
+                        <div class="w-12 h-12 rounded-xl bg-white/[0.06] border border-goldPrimary/40 flex items-center justify-center text-goldBright font-extrabold text-base shrink-0">
+                            #3
+                        </div>
+                        <div>
+                            <div class="flex flex-wrap items-center gap-2 mb-1">
+                                <span class="text-xs font-bold uppercase tracking-wider text-goldBright">Bono incluido</span>
+                                <span class="text-xs text-gray-400">· Seguimiento personal</span>
+                            </div>
+                            <h4 class="text-lg sm:text-xl font-bold text-white mb-1.5">Diario Reflexivo de 3 Semanas</h4>
+                            <p class="text-gray-300 text-sm leading-relaxed">Preguntas guiadas para revisar tu jornada, detectar patrones que te frenan y dejar definida tu prioridad del día siguiente.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- Sección 5: TESTIMONIOS DE NUESTROS LECTORES (Negro Carbón) -->
+    <section class="section-black py-16 sm:py-24">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-12 sm:mb-16 reveal">
+                <span class="text-xs uppercase tracking-widest text-goldBright font-bold block mb-2">Experiencias reales</span>
+                <h2 class="text-2xl sm:text-4xl font-extrabold text-white mb-3">
+                    <span class="gold-gradient-text">TESTIMONIOS DE NUESTROS LECTORES</span>
+                </h2>
+                <p class="text-gray-300 text-sm sm:text-base">Lo que opinan quienes ya aplicaron El Método Día Uno.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-7">
+                <!-- Testimonio 1 -->
+                <div class="premium-card p-6 sm:p-8 rounded-2xl flex flex-col justify-between reveal delay-100">
+                    <div>
+                        <div class="text-goldBright text-base tracking-widest mb-4">★★★★★</div>
+                        <p class="text-gray-200 italic text-sm sm:text-base leading-relaxed mb-6">
+                            "De los mejores e-books sobre procrastinación que encontré, muy completo, fácil de entender y aplicar."
+                        </p>
+                    </div>
+                    <div class="flex items-center gap-3.5 pt-4 border-t border-white/10">
+                        <img src="https://cdn.shopify.com/s/files/1/0813/3820/4408/files/LUCIA.jpg?v=1776498685" alt="Lucía" class="w-12 h-12 rounded-full object-cover border-2 border-goldPrimary shrink-0">
+                        <span class="font-bold text-sm sm:text-base text-goldBright">- Lucía, Rosario, Santa Fe.</span>
+                    </div>
+                </div>
+
+                <!-- Testimonio 2 -->
+                <div class="premium-card p-6 sm:p-8 rounded-2xl flex flex-col justify-between reveal delay-200">
+                    <div>
+                        <div class="text-goldBright text-base tracking-widest mb-4">★★★★★</div>
+                        <p class="text-gray-200 italic text-sm sm:text-base leading-relaxed mb-6">
+                            "Entender que no era cuestión de vagancia sino que estaba evitando emociones cambió mi vida."
+                        </p>
+                    </div>
+                    <div class="flex items-center gap-3.5 pt-4 border-t border-white/10">
+                        <img src="https://cdn.shopify.com/s/files/1/0813/3820/4408/files/MARCOS.jpg?v=1776498425" alt="Marcos" class="w-12 h-12 rounded-full object-cover border-2 border-goldPrimary shrink-0">
+                        <span class="font-bold text-sm sm:text-base text-goldBright">- Marcos, Buenos Aires.</span>
+                    </div>
+                </div>
+
+                <!-- Testimonio 3 -->
+                <div class="premium-card p-6 sm:p-8 rounded-2xl flex flex-col justify-between reveal delay-300">
+                    <div>
+                        <div class="text-goldBright text-base tracking-widest mb-4">★★★★★</div>
+                        <p class="text-gray-200 italic text-sm sm:text-base leading-relaxed mb-6">
+                            "La técnica de la Micro-Acción más el segundo bono hacen que valga la pena el precio."
+                        </p>
+                    </div>
+                    <div class="flex items-center gap-3.5 pt-4 border-t border-white/10">
+                        <img src="https://cdn.shopify.com/s/files/1/0813/3820/4408/files/CARLOS.jpg?v=1776498709" alt="Carlos" class="w-12 h-12 rounded-full object-cover border-2 border-goldPrimary shrink-0">
+                        <span class="font-bold text-sm sm:text-base text-goldBright">- Carlos, Mar del Plata.</span>
+                    </div>
+                </div>
+
+                <!-- Testimonio 4 -->
+                <div class="premium-card p-6 sm:p-8 rounded-2xl flex flex-col justify-between reveal delay-100">
+                    <div>
+                        <div class="text-goldBright text-base tracking-widest mb-4">★★★★★</div>
+                        <p class="text-gray-200 italic text-sm sm:text-base leading-relaxed mb-6">
+                            "Siempre empezaba cosas y las dejaba. Este libro me ayudó a salir de ese ciclo. Es simple y directo."
+                        </p>
+                    </div>
+                    <div class="flex items-center gap-3.5 pt-4 border-t border-white/10">
+                        <img src="https://cdn.shopify.com/s/files/1/0813/3820/4408/files/SOFIA.jpg?v=1776498669" alt="Sofía" class="w-12 h-12 rounded-full object-cover border-2 border-goldPrimary shrink-0">
+                        <span class="font-bold text-sm sm:text-base text-goldBright">- Sofía, Buenos Aires.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- Sección 6: OFERTA Y PRECIO DEFINITIVO (Gris Grafito Suave) -->
+    <section id="oferta" class="section-charcoal py-16 sm:py-24 relative overflow-hidden">
+        <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 reveal">
+            <div class="premium-card gold-border-subtle rounded-3xl p-7 sm:p-12 gold-glow text-center">
+                <div class="inline-flex items-center justify-center px-4 py-1.5 rounded-full bg-white/[0.06] text-goldBright font-bold text-xs uppercase tracking-widest mb-5 border border-goldPrimary/35">
+                    Acceso completo · Pago único
+                </div>
+
+                <h2 class="text-2xl sm:text-4xl font-extrabold text-white mb-3">Tu Día Uno empieza hoy</h2>
+                <p class="text-gray-300 text-sm sm:text-base max-w-lg mx-auto mb-7">
+                    Accedé al Ebook El Método Día Uno junto con los 3 bonos descargables en un solo pago.
+                </p>
+
+                <!-- Bloque de Precio con Ancla Tachada y Urgencia -->
+                <div class="my-6 py-6 px-4 rounded-2xl bg-[#09090b] border border-white/12 max-w-md mx-auto">
+                    <div class="text-sm sm:text-base text-gray-500 font-bold uppercase tracking-wider line-through decoration-red-500/75 decoration-2 mb-1.5">
+                        PRECIO ANTERIOR: 64.990$ ARS
+                    </div>
+                    <div class="text-4xl sm:text-5xl font-extrabold gold-gradient-text tracking-tight">
+                        19.990$ ARS
+                    </div>
+                    <div class="mt-3 inline-flex items-center justify-center gap-1.5 px-3 py-1 rounded-full bg-red-500/10 border border-red-500/30 text-red-400 text-xs font-bold uppercase tracking-wider">
+                        <span>🔥</span>
+                        <span>Precio promocional por tiempo limitado</span>
+                    </div>
+                </div>
+
+                <div class="mt-7 mb-7">
+                    <a href="https://whop.com/checkout/plan_1ZilJ62oSYEes" class="btn-gold w-full sm:w-auto inline-flex items-center justify-center text-sm sm:text-base font-extrabold uppercase tracking-wider px-8 py-4 rounded-xl min-h-[54px]">
+                        Obtener acceso por 19.990$ ARS
+                    </a>
+                </div>
+
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-6 text-xs text-gray-300 pt-5 border-t border-white/10">
+                    <span>⚡ Entrega digital inmediata</span>
+                    <span>📱 Compatible con celular, tablet y PC</span>
+                    <span>🛡️ Garantía de 7 días</span>
+                </div>
+            </div>
+
+            <!-- Métodos de Pago (mismos logos de la landing original) -->
+            <div class="mt-8 text-center">
+                <p class="text-xs uppercase tracking-widest text-gray-400 font-bold mb-3">Métodos de pago</p>
+                <div class="inline-flex items-center justify-center gap-5 px-6 py-3 rounded-2xl bg-[#18181c] border border-white/10">
+                    <img src="https://cdn.shopify.com/s/files/1/0647/0962/3978/files/MP_png.png?v=1743878945" alt="Mercado Pago" class="h-8 sm:h-9 object-contain">
+                    <img src="https://cdn.shopify.com/s/files/1/0647/0962/3978/files/Visa.png?v=1743879226" alt="Visa" class="h-8 sm:h-9 object-contain">
+                    <img src="https://cdn.shopify.com/s/files/1/0647/0962/3978/files/Master.png?v=1743879226" alt="Mastercard" class="h-8 sm:h-9 object-contain">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- Sección 7: GARANTÍA + PANELES DEL RAYO Y EL CEREBRO (Negro Carbón) -->
+    <section class="section-black py-16 sm:py-24">
+        <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 space-y-5">
+            <!-- Panel 1: Garantía -->
+            <div class="premium-card p-6 sm:p-8 rounded-2xl flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-5 reveal">
+                <div class="w-14 h-14 rounded-2xl bg-red-500/12 border border-red-400/30 flex items-center justify-center text-3xl shrink-0">
+                    🛡️
+                </div>
+                <div>
+                    <h3 class="text-lg sm:text-xl font-bold text-white mb-2">Garantía de 7 días</h3>
+                    <p class="text-gray-300 text-sm sm:text-base leading-relaxed">
+                        Probá el método con tranquilidad. Si dentro de los primeros 7 días sentís que el material no te aporta claridad ni herramientas útiles para tu día a día, podés solicitar el reembolso completo.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Panel 2: Rayo - Cambios desde el Día Uno -->
+            <div class="premium-card p-6 sm:p-8 rounded-2xl flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-5 reveal delay-100">
+                <div class="w-14 h-14 rounded-2xl bg-white/[0.06] border border-goldPrimary/35 flex items-center justify-center text-3xl shrink-0">
+                    ⚡
+                </div>
+                <div>
+                    <h3 class="text-lg sm:text-xl font-bold text-white mb-2">Cambios desde el Día Uno</h3>
+                    <p class="text-gray-300 text-sm sm:text-base leading-relaxed">
+                        Al aplicar los conocimientos que aprenderás, tu vida cambiará por completo desde el DÍA UNO.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Panel 3: Cerebro - El Sistema Detrás del Cambio -->
+            <div class="premium-card p-6 sm:p-8 rounded-2xl flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-5 reveal delay-200">
+                <div class="w-14 h-14 rounded-2xl bg-pink-500/12 border border-pink-400/30 flex items-center justify-center text-3xl shrink-0">
+                    🧠
+                </div>
+                <div>
+                    <h3 class="text-lg sm:text-xl font-bold text-white mb-2">El Sistema Detrás del Cambio</h3>
+                    <p class="text-gray-300 text-sm sm:text-base leading-relaxed">
+                        Este método no depende de fuerza de voluntad. Se basa en un sistema claro que te permite recuperar el control.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- Sección 8: PREGUNTAS FRECUENTES (Gris Grafito Suave) -->
+    <section class="section-charcoal py-16 sm:py-24">
+        <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12 reveal">
+                <h2 class="text-2xl sm:text-4xl font-extrabold text-white mb-3">Preguntas Frecuentes</h2>
+                <p class="text-gray-300 text-sm sm:text-base">Respuestas claras antes de empezar.</p>
+            </div>
+
+            <div class="space-y-4">
+                <details class="premium-card p-5 sm:p-6 rounded-2xl group reveal delay-100">
+                    <summary class="font-bold text-white text-sm sm:text-base cursor-pointer flex justify-between items-center gap-4 list-none">
+                        <span>¿Cómo y cuándo recibo el material?</span>
+                        <span class="text-goldBright text-xs group-open:rotate-180 transition-transform shrink-0">▼</span>
+                    </summary>
+                    <p class="text-gray-300 text-sm mt-3.5 leading-relaxed">
+                        Apenas se confirma tu pago, obtenés acceso inmediato para descargar el Ebook principal y los 3 bonos en formato digital y usarlos en tu celular, tablet o computadora.
+                    </p>
+                </details>
+
+                <details class="premium-card p-5 sm:p-6 rounded-2xl group reveal delay-200">
+                    <summary class="font-bold text-white text-sm sm:text-base cursor-pointer flex justify-between items-center gap-4 list-none">
+                        <span>¿Es un libro físico o un producto digital?</span>
+                        <span class="text-goldBright text-xs group-open:rotate-180 transition-transform shrink-0">▼</span>
+                    </summary>
+                    <p class="text-gray-300 text-sm mt-3.5 leading-relaxed">
+                        Es un producto 100% digital en formato PDF. No tenés que esperar envíos ni pagar costos de correo: lo descargás en el momento y te queda para siempre.
+                    </p>
+                </details>
+
+                <details class="premium-card p-5 sm:p-6 rounded-2xl group reveal delay-300">
+                    <summary class="font-bold text-white text-sm sm:text-base cursor-pointer flex justify-between items-center gap-4 list-none">
+                        <span>¿Necesito conocimientos previos para aplicarlo?</span>
+                        <span class="text-goldBright text-xs group-open:rotate-180 transition-transform shrink-0">▼</span>
+                    </summary>
+                    <p class="text-gray-300 text-sm mt-3.5 leading-relaxed">
+                        No. Está escrito de forma directa y práctica para que puedas entender qué te frena y aplicar las herramientas desde el primer día, sin tecnicismos innecesarios.
+                    </p>
+                </details>
+
+                <details class="premium-card p-5 sm:p-6 rounded-2xl group reveal delay-100">
+                    <summary class="font-bold text-white text-sm sm:text-base cursor-pointer flex justify-between items-center gap-4 list-none">
+                        <span>¿Cómo funciona la garantía de 7 días?</span>
+                        <span class="text-goldBright text-xs group-open:rotate-180 transition-transform shrink-0">▼</span>
+                    </summary>
+                    <p class="text-gray-300 text-sm mt-3.5 leading-relaxed">
+                        Tenés 7 días desde tu compra para revisar y aplicar el contenido. Si considerás que no es lo que buscabas, podés pedir la devolución dentro de ese plazo.
+                    </p>
+                </details>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer (Negro Carbón) -->
+    <footer class="section-black border-t border-white/10 py-10">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-gray-500 text-xs sm:text-sm">
+            <p class="mb-3 font-semibold text-gray-400">© 2026 Método Día Uno. Todos los derechos reservados.</p>
+            <p class="max-w-2xl mx-auto leading-relaxed">
+                Este material tiene fines educativos y de desarrollo personal. Los resultados dependen de la constancia y aplicación individual de cada lector.
+            </p>
+        </div>
+    </footer>
+
+    <!-- Botón Flotante Discreto -->
+    <a href="https://whop.com/checkout/plan_1ZilJ62oSYEes" id="floating-cta" class="floating-cta btn-gold items-center justify-center font-extrabold uppercase tracking-wider sm:px-5 sm:py-3 sm:text-xs">
+        Acceder al método
+    </a>
+
+    <!-- Scripts de Interacción -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const observerOptions = { root: null, rootMargin: "0px", threshold: 0.1 };
+            const observer = new IntersectionObserver((entries, obs) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("active");
+                        obs.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
+
+            const floatingCta = document.getElementById("floating-cta");
+            window.addEventListener("scroll", () => {
+                if (window.scrollY > 520) {
+                    floatingCta.style.display = "inline-flex";
+                } else {
+                    floatingCta.style.display = "none";
+                }
+            }, { passive: true });
+        });
+    </script>
+</body>
+</html>
